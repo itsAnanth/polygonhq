@@ -13,6 +13,7 @@ type BasePayload = {
 interface Base {
     position: Vector;
     mass: number;
+    previous: Vector;
     acceleration: Vector;
     velocity: Vector;
     elasticity: number;
