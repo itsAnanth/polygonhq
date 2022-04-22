@@ -11,5 +11,8 @@
   "license": "ISC",
   "files": [
     "**/dist/"
-  ]
+  ],
+  "devDependencies": {
+    "vite": "^2.9.5"
+  }
 }
