@@ -26,4 +26,9 @@ class Controller extends IController {
     }
 }
 
+Controller.UP = false;
+Controller.DOWN = false;
+Controller.LEFT = false;
+Controller.RIGHT = false;
+
 export default Controller;
