@@ -17,6 +17,10 @@ class Base {
         this.unitAcceleration = acceleration ?? 1;
     }
 
+    moveTo(vector: Vector) {
+        this.velocity = Vector.subtract(vector, this.position).unit().multiply(this.unitAcceleration);
+    }
+
     force(x: Vector | number, y?: number) {
         let dv = x instanceof Vector ? x : new Vector(x, y);
 
@@ -35,6 +39,13 @@ class Base {
 
         this.position.x = nextX;
         this.position.y = nextY;
+    }
+
+    update() {
+        this.acceleration = this.acceleration.multiply(this.unitAcceleration);
+        this.velocity.add(this.acceleration);
+        this.velocity.multiply(1 - this.friction);
+        this.position.add(this.velocity);
     }
 }
 
