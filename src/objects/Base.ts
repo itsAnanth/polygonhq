@@ -11,7 +11,7 @@ class Base {
         this.previous = new Vector();
         this.acceleration = new Vector();
         this.mass = mass ?? 5;
-        this.inverseMass = (mass <= 0) ? 0 : (1 / mass);
+        this.inverseMass = (mass <= 0) ? 0 : (1 / this.mass);
         this.elasticity = elasticity ?? 1;
         this.friction = friction ?? 0.05;
         this.damageOnCollision = damageOnCollision ?? false;
@@ -44,14 +44,17 @@ class Base {
     }
 
     update() {
-        this.acceleration = this.acceleration.multiply(this.unitAcceleration);
+        this.acceleration.multiply(this.unitAcceleration);
         this.velocity.add(this.acceleration);
+
         this.velocity.multiply(1 - this.friction);
         this.position.add(this.velocity);
+
     }
 
     registerControls() {
         if (!this.controlsEnabled) return;
+
 
         let { LEFT, UP, DOWN, RIGHT } = Controller;
 
