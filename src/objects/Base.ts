@@ -1,10 +1,11 @@
 import type { IBase, BasePayload } from '../../types/Base';
+import Controller from '../utils/Controller';
 import Vector from '../utils/Vector';
 
 interface Base extends IBase { };
 
 class Base {
-    constructor({ x, y, mass, elasticity, friction, damageOnCollision, acceleration }: BasePayload) {
+    constructor({ x, y, mass, elasticity, friction, damageOnCollision, acceleration, enableControls }: BasePayload) {
         this.position = new Vector(x, y);
         this.velocity = new Vector();
         this.previous = new Vector();
@@ -15,6 +16,7 @@ class Base {
         this.friction = friction ?? 0.05;
         this.damageOnCollision = damageOnCollision ?? false;
         this.unitAcceleration = acceleration ?? 1;
+        this.controlsEnabled = enableControls ?? false;
     }
 
     moveTo(vector: Vector) {
@@ -46,6 +48,31 @@ class Base {
         this.velocity.add(this.acceleration);
         this.velocity.multiply(1 - this.friction);
         this.position.add(this.velocity);
+    }
+
+    registerControls() {
+        if (!this.controlsEnabled) return;
+
+        let { LEFT, UP, DOWN, RIGHT } = Controller;
+
+        if (LEFT) {
+            this.acceleration.x = -this.unitAcceleration;
+        }
+        if (UP) {
+            this.acceleration.y = -this.unitAcceleration;
+        }
+        if (RIGHT) {
+            this.acceleration.x = this.unitAcceleration;
+        }
+        if (DOWN) {
+            this.acceleration.y = this.unitAcceleration;
+        }
+        if (!LEFT && !RIGHT) {
+            this.acceleration.x = 0;
+        }
+        if (!UP && !DOWN) {
+            this.acceleration.y = 0;
+        }
     }
 }
 

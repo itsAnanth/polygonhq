@@ -8,6 +8,7 @@ type BasePayload = {
     friction?: number;
     damageOnCollision?: boolean;
     acceleration?: number;
+    enableControls?: boolean;
 }
 
 interface Base {
@@ -21,6 +22,7 @@ interface Base {
     damageOnCollision: boolean;
     unitAcceleration: number;
     inverseMass: number;
+    controlsEnabled: boolean;
 }
 
 
