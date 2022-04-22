@@ -9,15 +9,21 @@ class Vector {
     }
 
     add(v: Vector) {
-        return new Vector(this.x + v.x, this.y + v.y);
+        this.x += v.x;
+        this.y += v.y;
+        return this;
     }
 
     subtract(v: Vector) {
-        return new Vector(this.x - v.x, this.y - v.y);
+        this.x - v.x;
+        this.y - v.y;
+        return this;
     }
 
     multiply(n: number) {
-        return new Vector(this.x * n, this.y * n);
+        this.x *= n;
+        this.y *= n;
+        return this;
     }
 
     /**
