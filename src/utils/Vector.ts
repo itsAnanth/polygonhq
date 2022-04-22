@@ -95,6 +95,10 @@ class Vector {
     static add(v1: Vector, v2: Vector) {
         return new Vector(v1.x + v2.x, v1.y + v2.y);
     }
+
+    static multiply(v: Vector, n: number) {
+        return new Vector(v.x * n, v.y * n);
+    }
 }
 
 export default Vector;
