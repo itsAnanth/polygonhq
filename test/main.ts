@@ -1,4 +1,5 @@
 import Ball from "../src/objects/Ball";
+import AnimationFrame from "../src/utils/AnimationFrame";
 import Controller from "../src/utils/Controller";
 import Renderer from "../src/utils/Renderer";
 
@@ -23,18 +24,18 @@ const ball2 = new Ball({
     y: 300,
     radius: 10,
     mass: 1,
-    enableControls: true,
+    enableControls: false,
     acceleration: 0.5
 });
 
 const entities = [ball, ball2];
-const others = [ball2]
+const others = [ball2];
 
-requestAnimationFrame(loop);
 
-function loop() {
+(new AnimationFrame(60, gameloop)).start()
+
+function gameloop() {
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    requestAnimationFrame(loop);
 
     Renderer.renderWorld(ctx, canvas, ball);
     ball.registerControls();
