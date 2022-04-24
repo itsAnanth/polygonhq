@@ -23,7 +23,7 @@ class Renderer {
     }
 
 
-    static renderWorld(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, p: Base, options: { fillStyle?: string, strokeStyle?: string, mapX?: number, mapY?: number, tileWidth?: number, tileHeight?: number } = { }) {
+    static renderWorldTiles(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, p: Base, options: { fillStyle?: string, strokeStyle?: string, mapX?: number, mapY?: number, tileWidth?: number, tileHeight?: number } = { }) {
         const MAP_SIZE = 3000;
         ctx.fillStyle = "#323232";
         ctx.fillRect(0, 0, MAP_SIZE, MAP_SIZE);

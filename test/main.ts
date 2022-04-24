@@ -1,5 +1,6 @@
 import Ball from "../src/objects/Ball";
 import AnimationFrame from "../src/utils/AnimationFrame";
+import Collision from "../src/utils/Collision";
 import Controller from "../src/utils/Controller";
 import Renderer from "../src/utils/Renderer";
 
@@ -23,7 +24,7 @@ const ball2 = new Ball({
     x: 500,
     y: 300,
     radius: 10,
-    mass: 1,
+    mass: 10,
     enableControls: false,
     acceleration: 0.5
 });
@@ -37,7 +38,7 @@ const others = [ball2];
 function gameloop() {
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    Renderer.renderWorld(ctx, canvas, ball);
+    Renderer.renderWorldTiles(ctx, canvas, ball);
     ball.registerControls();
 
     entities.forEach((entity, index) => {
@@ -63,11 +64,7 @@ function gameloop() {
             //             player.destroy();
             //         continue;
             //     }
-            if (Ball.collision(entity_1, entity_2)) {
-                console.log('collided')
-                Ball.penetration_resolution(entity_1, entity_2);
-                Ball.collision_resoluion(entity_1, entity_2);
-            }
+            Collision.ballToBall(entity_1, entity_2);
 
         }
 
