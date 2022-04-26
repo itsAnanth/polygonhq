@@ -2,6 +2,7 @@ import Base from "./Base";
 import type { IBall, BallPayload } from '../../types/Ball';
 import Angle from "../utils/Angle";
 import Vector from "../utils/Vector";
+import ObjectTypes from "../utils/objectTypes";
 
 
 interface Ball extends IBall { };
@@ -12,6 +13,7 @@ class Ball extends Base {
         const { radius, color } = payload;
         this.radius = radius ?? 5;
         this.color = color ?? 'red';
+        this.type = ObjectTypes.BALL;
     }
 
     render(ctx: CanvasRenderingContext2D, options: { strokeStyle?: string, x?: number, y?: number } = {}) {
